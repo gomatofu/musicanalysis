@@ -1,23 +1,26 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div>
+        <h1>Laravel 9 And Vue 3</h1>
+        <input type="text" v-model="text"/>
+        <button v-on:click="buttonClicked">クリック</button>
+        <h1>{{ text }}</h1>
+        <h2>{{ message }}</h2>
     </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+export default {
+  data() {
+    return {
+      message: "",
+      text: "",
+    };
+  },
+  methods: {
+    async buttonClicked() {
+      const res = await axios.get("/api/hello", {params: {name:this.text}});
+      this.message = res.data;
+    },
+  },
+};
 </script>

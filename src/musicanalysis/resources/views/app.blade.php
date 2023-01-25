@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <test-vue></test-vue>
+            <app-vue></app-vue>
         </div>
     </body>
 </html>

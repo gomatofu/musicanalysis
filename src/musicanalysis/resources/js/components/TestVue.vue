@@ -1,7 +1,9 @@
 <template>
   <div>
     Hello Vue !!
+    <input type="text" />
   </div>
+  
 </template>
 
 <script>
