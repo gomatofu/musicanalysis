@@ -4,7 +4,7 @@
         <input type="text" v-model="text"/>
         <button v-on:click="buttonClicked">クリック</button>
         <h1>{{ text }}</h1>
-        <h2>{{ message }}</h2>
+        <img :src="message">
     </div>
 </template>
 
