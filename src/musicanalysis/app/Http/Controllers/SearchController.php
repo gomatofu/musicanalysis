@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UseCase\SearchUseCase;
 
 class SearchController extends Controller
 {
-    public function index(Request $request): string
+    public function search(Request $request)
     {
-
-        $a = $request->input();
-        return 'Hello World';
+        $a =  app()->make(SearchUseCase::class)->search($request->input());
+        return $a;
     }
 }
