@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Laravel 9 And Vue 3</h1>
-        <input type="text" v-model="text"/>
-        <button v-on:click="buttonClicked">クリック</button>
+        <v-input type="text" v-model="text"/>
+        <v-btn v-on:click="buttonClicked">クリック</v-btn>
         <h1>{{ text }}</h1>
         <img :src="message">
     </div>
