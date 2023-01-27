@@ -2,19 +2,13 @@ require('./bootstrap');
 
 import { createApp } from 'vue'
 import router from './router.js'
-import "vuetify/styles";
-import {createVuetify} from 'vuetify';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import App from './app.vue';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
 
-const vuetify = createVuetify({
-    components,
-    directives,
-});
 const app = createApp({})
 
 app.component('app-vue', App);
 app.use(router);
-app.use(vuetify);
+app.use(ElementPlus)
 app.mount('#app');
