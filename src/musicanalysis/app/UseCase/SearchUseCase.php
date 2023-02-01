@@ -2,12 +2,14 @@
 namespace App\UseCase;
 
 use SpotifyWebAPI;
+use Exception;
 
 class SearchUseCase 
 {
-    public function search(array $request)
+    public function search(array $requests)
     {
-        // session情報作成
+        try{
+            // session情報作成
         $clientId = config('spotifyinfo.client-id');
         $clientSecret = config('spotifyinfo.client-secret');
         $session = new SpotifyWebAPI\Session(
@@ -22,12 +24,32 @@ class SearchUseCase
         $api = new SpotifyWebAPI\SpotifyWebAPI();
         $api->setAccessToken($accessToken);
 
-        $name = $request['name'];
-        $results = $api->search($name, 'artist');
+        $name = $requests['name'];
+        $options =[
+            'limit' => 10,
+        ];
+        $results = $api->search($name, 'artist', $options);
         $albums = $api->getArtistAlbums("0GtBUVp1cWdIUKwm2GHTHc");
-        $tracks = $api->getAlbumTracks("1ZZYZP9zwTSsKG0GHyx1fY");
+        $getArtists = $api->getArtists("0GtBUVp1cWdIUKwm2GHTHc",);
+        //$tracks = $api->getAlbumTracks("1ZZYZP9zwTSsKG0GHyx1fY");
 
-        $name = $results->artists->items[0]->images[0]->url;
-        return $name;
+        $array = array();
+        $itemsNum = count($results->artists->items);
+        for ($index= 0; $index < $itemsNum; $index++){
+            $array[$index]=[
+                'id' => $results->artists->items[$index]->id,
+                'name' => $results->artists->items[$index]->name,
+                'genres' => $results->artists->items[$index]->genres[0] ?? '',
+                'popularity' => $results->artists->items[$index]->popularity,
+                'url' => $results->artists->items[$index]->external_urls->spotify,
+                'image' => $results->artists->items[$index]->images[0]->url ?? ''];
+          }
+        //$a = $results->artists->items[0]->images[0]->url;
+        //$array = json_decode(json_encode($name), true);
+        return $array;
+        }catch(Exception $exception){
+            return $exception;
+        }
+        
     }
 }

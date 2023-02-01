@@ -9,7 +9,6 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $a =  app()->make(SearchUseCase::class)->search($request->input());
-        return $a;
+        return  app()->make(SearchUseCase::class)->search($request->input());
     }
 }
