@@ -1,13 +1,10 @@
 <template>
     <div>
+        <li><router-link to="/routing">Rounting Test</router-link></li>
         <el-input v-model="text" placeholder="Please input" /> <br>
-        <el-button type="primary" v-on:click="buttonClicked">Primary</el-button>
-        <el-table :data="responseData" stripe style="width: 100%">
-          <el-table-column label="image" style="width: 20%">
-            <template slot-scope="scope" class="image-slot">
-              <el-image style="width: 90px; height: 90px" :src="scope.row.image" lazy>
-              </el-image>
-          </template>
+        <el-button type="primary" @click="buttonClicked">Primary</el-button>
+        <el-table  v-loading="store.loading" @row-click="handleClick" :data="store.responseData" stripe style="width: 100%">
+          <el-table-column prop='image' label="image" style="width: 20%">
           </el-table-column>
           <el-table-column prop="name" label="name" style="width: 20%" />
           <el-table-column prop="genres" label="genres" style="width: 15%" />
@@ -19,23 +16,46 @@
 </template>
 
 <script>
+import { searchStore } from '@/stores/search'
 
 export default {
+  setup() {
+    const store = searchStore()
+
+    return {
+      store,
+    }
+  },
   data() {
     return {
       message: "",
       text: "",
-      responseData:[],
     };
   },
   
   methods: {
-    async buttonClicked() {
-      await axios.get("/api/hello", {params: {name:this.text}})
-      .then(response => {
-        this.responseData = response.data;
-            })
+    // ローディング表示
+    loadingStart() {
+      this.loading = true;
     },
+    loadingStop() {
+      this.loading = false;
+    },
+    buttonClicked() {
+      this.store.artistSearch(this.text);
+    },
+    handleClick(val) {
+      this.$router.push('/routing')
+      }
   },
 };
 </script>
+
+<style>
+body {
+  margin: 0;
+}
+.example-showcase .el-loading-mask {
+  z-index: 9;
+}
+</style>

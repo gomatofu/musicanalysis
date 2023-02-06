@@ -1,5 +1,5 @@
-import ExampleComponent from '../components/ExampleComponent.vue';
-import TestVue from '../components/TestVue.vue';
+import ExampleComponent from '@/components/ExampleComponent';
+import TestVue from '@/components/TestVue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
