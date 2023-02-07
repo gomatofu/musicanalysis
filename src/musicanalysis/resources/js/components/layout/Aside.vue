@@ -3,10 +3,9 @@
    </el-aside>
 </template>
 
-<style>
-.el-aside{
-  background-color: black;
+<style scoped>
+.common-aside{
+  background-color: #B0BEC5;
   width: 200px;
-  height: 100%;
 }
 </style>
