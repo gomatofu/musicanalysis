@@ -17,13 +17,11 @@
 </template>
 
 <script>
-import Header from '@/components/layout/Header';
 import Aside from '@/components/layout/Aside';
 
 export default {
   name: "layout",
   components:{
-    Header,
     Aside,
   }
 };
@@ -38,6 +36,7 @@ export default {
 }
 .title {
   text-align: left;
-  color: #E6EE9C;
+  color: #f7df49;
+  font-size: 14x;
 }
 </style>
