@@ -10,7 +10,7 @@ export const artistStore = defineStore("artist", {
   actions: {
     async  artistSearch(name) {
         this.loading = true;
-        await axios.get("/api/artist", {params: {name:name}})
+        await axios.get("/api/artists", {params: {name:name}})
         .then(response => {
           this.responseData = response.data;
               })

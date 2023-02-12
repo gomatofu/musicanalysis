@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ArtistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +18,5 @@ use App\Http\Controllers\SearchController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/artist', [SearchController::class, 'getlist']);
-Route::get('/album/{id}', [SearchController::class, 'getAlbums']);
+Route::get('/artists', [ArtistController::class, 'getArtist']);
+Route::get('/artists/{id}/albums', [ArtistController::class, 'getArtistsAlbum']);

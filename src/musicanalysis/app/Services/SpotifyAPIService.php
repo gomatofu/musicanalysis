@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\UseCase\SpotifyUseCase;
+use App\UseCases\Spotify\SpotifyUseCase;
 
 class SpotifyAPIService 
 {
@@ -15,7 +15,7 @@ class SpotifyAPIService
      * @param string $atistName
      * @return object
      */
-    public function getArtistFirstDisply(string $atistName):object
+    public function getArtist(string $atistName):object
     {
         $options =[
             'limit' => 10,
@@ -29,9 +29,13 @@ class SpotifyAPIService
      * @param string $atistId
      * @return object
      */
-    public function getArtistAlbums(string $atistId):object
+    public function getArtistsAlbum(string $atistId):object
     {
-        $results = $this->api->getArtistAlbums($atistId);
+        $options =[
+            'include_groups' => 'album',
+            'limit' => 50,
+        ];
+        $results = $this->api->getArtistAlbums($atistId,$options);
         return $results;
     }
 }

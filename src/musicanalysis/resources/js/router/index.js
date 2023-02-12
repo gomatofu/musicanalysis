@@ -11,7 +11,7 @@ const router = createRouter({
       name:'artist',
     },
     {
-      path: "/album/:id?",
+      path: "/artists/:id?/albums",
       component: Album,
       name:'album',
     },

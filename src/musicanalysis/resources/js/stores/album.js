@@ -10,7 +10,7 @@ export const albumStore = defineStore("album", {
   actions: {
     async albumSearch(id) {
         this.loading = true;
-        await axios.get("/api/album/"+id, {params: {id:id}})
+        await axios.get("/api/artists/"+id+"/albums", {params: {id:id}})
         .then(response => {
           this.responseData = response.data;
               })
