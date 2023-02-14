@@ -37,7 +37,6 @@ export default {
       this.store.artistSearch(this.text);
     },
     handleClick(val) {
-      //this.$router.push({ path: '/album', query: { id: val.id} });
       this.$router.push({ name: 'album', params: { id: val.id } })
       }
   },
