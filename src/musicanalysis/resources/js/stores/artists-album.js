@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 
-export const useArtistsAlbumStore = defineStore("artistsAlbum", {
+export const useArtistsAlbumStore = defineStore({
+  id:"artistsAlbum",
   state: () => ({
     tableData:[],
     page: 1,
@@ -12,7 +13,7 @@ export const useArtistsAlbumStore = defineStore("artistsAlbum", {
     pagedTableData: (state) => state.tableData.slice((state.page - 1) * state.pageSize,state.page * state.pageSize)
   },
   actions: {
-    async albumSearch(id) {
+    async artistsAlbumSearch(id) {
         this.loading = true;
         await axios.get("/api/artists/"+id+"/albums", {params: {id:id}})
         .then(response => {

@@ -55,7 +55,7 @@ const setPage = (currentPage) => {
   ArtistsAlbumStore.setPage(currentPage);
 };
 onMounted(() => {
-  ArtistsAlbumStore.albumSearch(route.params.id);
+  ArtistsAlbumStore.artistsAlbumSearch(route.params.id);
 });
 </script>
 

@@ -12,30 +12,41 @@ class SpotifyAPIService
     }
     /**
      * アーティスト名検索時の初期表示取得
-     * @param string $atistName
+     * @param string $artistName
      * @return object
      */
-    public function getArtist(string $atistName):object
+    public function getArtist(string $artistName):object
     {
         $options =[
             'limit' => 10,
         ];
-        $results = $this->api->search($atistName, 'artist', $options);
+        $results = $this->api->search($artistName, 'artist', $options);
         return $results;
     }
 
     /**
      * アーティストのアルバム情報取得
-     * @param string $atistId
+     * @param string $artistId
      * @return object
      */
-    public function getArtistsAlbum(string $atistId):object
+    public function getArtistsAlbum(string $artistId):object
     {
         $options =[
             'include_groups' => 'album',
             'limit' => 50,
         ];
-        $results = $this->api->getArtistAlbums($atistId,$options);
+        $results = $this->api->getArtistAlbums($artistId,$options);
+        return $results;
+    }
+
+    /**
+     * アルバムの詳細情報取得(曲名)
+     * @param string $albumId
+     * @return object
+     */
+    public function getAlbumDetail(string $albumId):object
+    {
+        $results = $this->api->getAlbum($albumId);
         return $results;
     }
 }

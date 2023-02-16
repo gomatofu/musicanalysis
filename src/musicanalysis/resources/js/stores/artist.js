@@ -1,20 +1,23 @@
 import { defineStore } from "pinia"
 
-export const artistStore = defineStore("artist", {
+export const useArtistStore = defineStore({
+  id:"artist", 
   state: () => ({
-    responseData:[],
+    artistName:'',
+    tableData:[],
     loading:false,
   }),
-  getters: {
-  },
   actions: {
-    async  artistSearch(name) {
+    async  artistSearch(artistName) {
         this.loading = true;
-        await axios.get("/api/artists", {params: {name:name}})
+        await axios.get("/api/artists", {params: {name:artistName}})
         .then(response => {
-          this.responseData = response.data;
+          this.tableData = response.data;
               })
         this.loading = false;
     },
+    artistsAlbumMove(artistId){
+      this.$router.push({ name: 'artistsAlbum', params: { id: artistId.id } })
+    }
   },
 })

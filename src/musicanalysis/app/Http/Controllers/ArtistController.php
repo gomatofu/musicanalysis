@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UseCases\Artist\ArtistGetUseCase;
-use App\UseCases\Artist\ArtistsAlbumsGetUseCase;
+use App\UseCases\Artist\ArtistsAlbumGetUseCase;
 
 class ArtistController extends Controller
 {
@@ -15,6 +15,6 @@ class ArtistController extends Controller
 
     public function getArtistsAlbum($id)
     {
-        return  app()->make(ArtistsAlbumsGetUseCase::class)->getArtistsAlbum($id);
+        return  app()->make(ArtistsAlbumGetUseCase::class)->getArtistsAlbum($id);
     }
 }
