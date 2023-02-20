@@ -46,7 +46,22 @@ class SpotifyAPIService
      */
     public function getAlbumDetail(string $albumId):object
     {
-        $results = $this->api->getAlbum($albumId);
+        $options =[
+            'limit' => 50,
+        ];
+        $results = $this->api->getAlbumTracks($albumId,$options);
+        return $results;
+    }
+
+    /**
+     * 曲の分析情報取得
+     * @param array $tracksId
+     * @return object
+     */
+    public function getMultipleAudioFeatures(array $tracksId):object
+    {
+        $results = $this->api->getMultipleAudioFeatures($tracksId);
+
         return $results;
     }
 }

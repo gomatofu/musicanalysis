@@ -1,8 +1,6 @@
 <template>
     <div>
-        <el-input v-model="artistName" placeholder="Please input" /> <br>
-        <el-button type="primary" @click="artistSearch">Primary</el-button>
-        <el-table  v-loading="artistStore.loading" @row-click="artistsAlbumMove" :data="artistStore.tableData" stripe style="width: 100%">
+        <el-table  v-loading="albumDetailStore.loading" :data="albumDetailStore.tableData" stripe style="width: 100%">
           <el-table-column label="image" width="180">
            <template #default="scope">
              <el-image
@@ -26,18 +24,17 @@
     </div>
 </template>
 
-<script setup name="Artist">
-import { storeToRefs } from "pinia";
-import { useArtistStore } from '@/stores/artist'
+<script setup name="AlbumDetail">
+import { onMounted } from "vue";
+import { useRoute } from 'vue-router'
+import { useAlbumDetailStore } from '@/stores/album-detail'
 
-const artistStore = useArtistStore();
-const { artistName } = storeToRefs(artistStore);
-const artistSearch = () => {
-  artistStore.artistSearch(artistName.value);
-};
-const artistsAlbumMove = (artistId) => {
-  artistStore.artistsAlbumMove(artistId);
-};
+const albumDetailStore = useAlbumDetailStore();
+const route = useRoute();
+
+onMounted(() => {
+  albumDetailStore.albumDetailSearch(route.params.id);
+});
 </script>
 
 <style>

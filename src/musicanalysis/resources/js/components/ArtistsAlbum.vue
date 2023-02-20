@@ -2,15 +2,15 @@
   <div>
     <div>
       <el-carousel :interval="2000" type="card" height="200px" width="500px">
-    <el-carousel-item v-for="item in ArtistsAlbumStore.tableData" :key="ArtistsAlbumStore.tableData">
+    <el-carousel-item v-for="item in artistsAlbumStore.tableData" :key="artistsAlbumStore.tableData">
       <img class="item__image" :src="item.image" alt="" />
     </el-carousel-item>
   </el-carousel>
   <el-button type="primary" @click="buttonClicked">Primary</el-button>
       <el-table
-        v-loading="ArtistsAlbumStore.loading" 
-        @row-click="handleClick" 
-        :data="ArtistsAlbumStore.pagedTableData" 
+        v-loading="artistsAlbumStore.loading" 
+        @row-click="albumDetailMove" 
+        :data="artistsAlbumStore.pagedTableData" 
         stripe style="width: 100%">
 
         <el-table-column label="image" :min-width="10" >
@@ -36,8 +36,8 @@
 
       <el-pagination 
           layout="prev, pager, next" 
-          :page-size="ArtistsAlbumStore.pageSize" 
-          :total="ArtistsAlbumStore.total" 
+          :page-size="artistsAlbumStore.pageSize" 
+          :total="artistsAlbumStore.total" 
           @current-change="setPage">
       </el-pagination>
     </div>
@@ -49,13 +49,17 @@ import { onMounted } from "vue";
 import { useRoute } from 'vue-router'
 import { useArtistsAlbumStore } from '@/stores/artists-album'
 
-const ArtistsAlbumStore = useArtistsAlbumStore();
+const artistsAlbumStore = useArtistsAlbumStore();
 const route = useRoute();
 const setPage = (currentPage) => {
-  ArtistsAlbumStore.setPage(currentPage);
+  artistsAlbumStore.setPage(currentPage);
 };
+const albumDetailMove = (albiumId) => {
+  artistsAlbumStore.albumDetailMove(albiumId);
+};
+
 onMounted(() => {
-  ArtistsAlbumStore.artistsAlbumSearch(route.params.id);
+  artistsAlbumStore.artistsAlbumSearch(route.params.id);
 });
 </script>
 

@@ -1,5 +1,6 @@
 import Artist from '@/components/Artist';
 import ArtistsAlbum from '@/components/ArtistsAlbum';
+import AlbumDetail from '@/components/AlbumDetail';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -14,6 +15,11 @@ const router = createRouter({
       path: "/artists/:id?/albums",
       component: ArtistsAlbum,
       name:'artistsAlbum',
+    },
+    {
+      path: "/albums/:id?",
+      component: AlbumDetail,
+      name:'albumDetail',
     },
   ],
 });
