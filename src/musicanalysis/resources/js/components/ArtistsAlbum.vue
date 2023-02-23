@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>
       <el-carousel :interval="2000" type="card" height="200px" width="500px">
     <el-carousel-item v-for="item in artistsAlbumStore.tableData" :key="artistsAlbumStore.tableData">
       <img class="item__image" :src="item.image" alt="" />
@@ -40,7 +39,6 @@
           :total="artistsAlbumStore.total" 
           @current-change="setPage">
       </el-pagination>
-    </div>
   </div>
 </template>
 
