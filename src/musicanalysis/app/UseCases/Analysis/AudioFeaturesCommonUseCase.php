@@ -31,4 +31,19 @@ class AudioFeaturesCommonUseCase
         $ms = sprintf("%2d:%02d", $minutes, $seconds);
         return $ms;
     }
+
+    /**
+     * メジャー/マイナーに変換
+     * @param int $mode.
+     * @return string
+     */
+    public function modeConversion(int $mode):string
+    {
+        if ($mode == 0) {
+            $scale  = 'minor';
+        }else{
+            $scale  = 'major ';
+        };
+        return $scale;
+    }
 }

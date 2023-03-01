@@ -34,6 +34,8 @@ class AlbumDetailGetUseCase
             for ($index= 0; $index < $itemsNum; $index++){
                 $key = $this->getAudioFeaturesCommonUseCase()->keyConversion($features[$index]['key']);
                 $features[$index]['key'] = $key;
+                $scale = $this->getAudioFeaturesCommonUseCase()->modeConversion($features[$index]['mode']);
+                $features[$index]['mode'] = $scale;
                 $trackFeatures[$index] = array_merge($tracks[$index], $features[$index]);
             }
 
