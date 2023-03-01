@@ -32,7 +32,6 @@ class SpotifyAPIService
     public function getArtistsAlbum(string $artistId):object
     {
         $options =[
-            'include_groups' => 'album',
             'limit' => 50,
         ];
         $results = $this->api->getArtistAlbums($artistId,$options);
